@@ -97,6 +97,7 @@ class AnimationThree(ThreeDScene):
         # Muestra de inicio 4 vectores donde 2 de ellos son iguales. 
         # Éstos con su debida etiqueta. 
 
+
         image = ImageMobject("/home/codexreckoner/manim/media/designs/raster_images/FONDOCOLOR.jpg")
         image.scale(6)
         self.play(FadeIn(image))

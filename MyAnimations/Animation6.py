@@ -15,6 +15,7 @@ class CustomGraph3(GraphFromData):
         "y_max": 25,
     }
     def construct(self):
+        
         self.setup_axes()
         x = [0 , 1, 2, 3,  4,  5,  6,  7]
         y = [0 , 1, 4, 9, 16, 25, 20, 10]
@@ -24,6 +25,11 @@ class CustomGraph3(GraphFromData):
         # V
         points = self.get_points_from_coords(coords)
         
+        image = ImageMobject("/home/codexreckoner/manim/media/designs/raster_images/FONDOCOLOR.jpg")
+        image.scale(6)
+        self.play(FadeIn(image))
+
+
         graph = SmoothGraphFromSetPoints(points,color=GREEN)
         dots = self.get_dots_from_coords(coords)
 
