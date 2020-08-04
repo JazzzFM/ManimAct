@@ -33,8 +33,8 @@ class ScreenGrid(VGroup):
         "height": FRAME_Y_RADIUS * 2,
         "width": 14,
         "grid_stroke": 0.5,
-        "grid_color": BLUE,
-        "axis_color": RED,
+        "grid_color": "#FFFFFF",
+        "axis_color": "#FFFFFF",
         "axis_stroke": 2,
         "labels_scale": 0.5,
         "labels_buff": 0,
@@ -208,17 +208,19 @@ Vanilla = "#F3E5AB"
 class AnimationTwo(ThreeDScene):
     #Objetivo: Mostrar a partir de un punto en el plano 
     #           cómo se definen las razones trigonométricas 
-    
-    CONFIG={
-        "camera_config":{"background_color" : Vanilla}
-    }
-    
+#    CONFIG={
+#        "camera_config":{"background_color" : Vanilla}
+#    }
     # En un plano aparecer un punto. Construir el radio vector 
     # y las proyecciones a los ejes x y y. Luego mostrar el 
     # ángulo θ dentro del triángulo rectángulo formado. 
     # Listo :D
     
     def construct(self):
+        BLUE2 = "#FFFFFF"
+        image = ImageMobject("/home/codexreckoner/manim/media/designs/raster_images/FONDOCOLOR.jpg")
+        image.scale(6)
+        self.add(image)
         object = ScreenGrid()
         DL2 = np.array([-4,-2,0])
         DL3 = np.array([-2,0,0])
@@ -229,24 +231,24 @@ class AnimationTwo(ThreeDScene):
         vx = np.array([0,-2,0])
         vy = np.array([0,2,0])
         
-        hipo = Line(DL2, vy)
-        hipo.set_color(BLUE) # Esta linea se va convertir en texto
+        hipo = Line(DL2, vy).set_opacity(3)
+        hipo.set_color(BLUE2) # Esta linea se va convertir en texto
         punto = Dot(v).move_to(vy)
-        punto.set_color(BLUE)
+        punto.set_color(BLUE2)
         self.play(ShowCreation(punto))
-        self.play(FadeIn(Vector(v, color=BLUE).move_to(DL3), run_time=2))
+        self.play(FadeIn(Vector(v, color=BLUE2).move_to(DL3), run_time=2))
         self.add(hipo)
         self.wait()
 
-        proyx = DashedLine(DL2, vx)
-        proyx1 = Line(DL2, vx) # Esta línea se va a convertir en texto
-        proyx.set_color(BLUE)
-        proyx1.set_color(BLUE)
+        proyx = DashedLine(DL2, vx).set_opacity(3)
+        proyx1 = Line(DL2, vx).set_opacity(3) # Esta línea se va a convertir en texto
+        proyx.set_color(BLUE2)
+        proyx1.set_color(BLUE2)
 
-        proyy = DashedLine(vx,vy)
-        proyy1= Line(vx, vy) # Esta línea se va a convertir en texto
-        proyy.set_color(BLUE)
-        proyy1.set_color(BLUE)
+        proyy = DashedLine(vx,vy).set_opacity(3)
+        proyy1= Line(vx, vy).set_opacity(3) # Esta línea se va a convertir en texto
+        proyy.set_color(BLUE2)
+        proyy1.set_color(BLUE2)
 
         self.play(ShowCreation(proyx))
         self.play(ShowCreation(proyx1))
@@ -260,7 +262,7 @@ class AnimationTwo(ThreeDScene):
 
         chichi = TexMobject("\\theta")
         chichi.move_to(DL2 + poq)
-        chichi.set_color(BLUE)
+        chichi.set_color(BLUE2)
         chichi.scale_in_place(1)
         self.play(Write(chichi))
         self.wait()
@@ -274,8 +276,7 @@ class AnimationTwo(ThreeDScene):
         r = TexMobject("r")
         co = TexMobject("y")
         ca = TexMobject("x")
-        
-        
+                
         ###################################
         
         mover = {}
@@ -292,12 +293,12 @@ class AnimationTwo(ThreeDScene):
         catetop.shift(mover[2])
         co.shift(mover[2])
 
-        thipo.set_color(BLUE)
-        r.set_color(BLUE)
-        catetop.set_color(BLUE)
-        co.set_color(BLUE)
-        catetoa.set_color(BLUE)
-        ca.set_color(BLUE)
+        thipo.set_color(BLUE2)
+        r.set_color(BLUE2)
+        catetop.set_color(BLUE2)
+        co.set_color(BLUE2)
+        catetoa.set_color(BLUE2)
+        ca.set_color(BLUE2)
 
         thipo.rotate(PI/4) #El centro es el centro de area del texto, en radianes, texto u objeto
         r.rotate(PI/4)
@@ -310,7 +311,7 @@ class AnimationTwo(ThreeDScene):
         
         title = TexMobject("P(x,y)","=","P(r,\\theta)")
         title.move_to(UP + np.array([1,1.5,0]))
-        title.set_color(BLUE) 
+        title.set_color(BLUE2) 
         self.play(Write(title[0]))
 
         self.play(Transform(hipo,r))
@@ -327,10 +328,9 @@ class AnimationTwo(ThreeDScene):
         # Finalmente mostrar a la derecha la razón sen θ=
         # Listo! :D
 
-
         seno = TexMobject("sen(\\theta)","=","{y","\\over"," r}")
         seno.shift(mover[4])
-        seno.set_color(BLUE)
+        seno.set_color(BLUE2)
         self.play(Write(seno[0]))
         self.play(Write(seno[1]))
         self.play(Write(seno[3]))
@@ -341,7 +341,7 @@ class AnimationTwo(ThreeDScene):
         self.wait()
         
         despeje_1 = TexMobject("r sen(\\theta)","=","y")
-        despeje_1.set_color(BLUE)
+        despeje_1.set_color(BLUE2)
         despeje_1.move_to(mover[4])
         self.play(ReplacementTransform(seno, despeje_1))
         self.wait(1)
@@ -354,7 +354,7 @@ class AnimationTwo(ThreeDScene):
 
         coseno = TexMobject("cos(\\theta)", "=","{x","\\over","r}")
         coseno.shift(mover[4])
-        coseno.set_color(BLUE)
+        coseno.set_color(BLUE2)
         self.play(ReplacementTransform(despeje_1, coseno[0]))
         self.play(Write(coseno[1]))
         self.play(Write(coseno[3]))
@@ -365,7 +365,7 @@ class AnimationTwo(ThreeDScene):
         self.wait(1)
 
         despeje_2 = TexMobject("r cos(\\theta)","=","x")
-        despeje_2.set_color(BLUE)
+        despeje_2.set_color(BLUE2)
         despeje_2.move_to(mover[4])
         self.play(ReplacementTransform(coseno, despeje_2))
         self.wait(1)
@@ -374,7 +374,7 @@ class AnimationTwo(ThreeDScene):
 
         tang = TexMobject("tan(\\theta)", "=","{y", "\\over", "x}")
         tang.shift(mover[4])
-        tang.set_color(BLUE)
+        tang.set_color(BLUE2)
         self.play(ReplacementTransform(despeje_2, tang[0]))
         self.play(Write(tang[1]))
         self.play(Write(tang[3]))
@@ -385,7 +385,7 @@ class AnimationTwo(ThreeDScene):
         self.wait(1)
 
         despeje_3 = TexMobject("x tan(\\theta)","=","y")
-        despeje_3.set_color(BLUE)
+        despeje_3.set_color(BLUE2)
         despeje_3.move_to(mover[4])
         self.play(ReplacementTransform(tang,despeje_3))
         self.play(FadeOut(despeje_3))
@@ -396,12 +396,12 @@ class AnimationTwo(ThreeDScene):
         # Listo! :D
 
         seno = TexMobject("sen(\\theta)","=","{y","\\over"," r}")
-        seno.set_color(BLUE)
+        seno.set_color(BLUE2)
         seno.move_to(np.array([3.5, 1,0]))
         igualar_1 = TexMobject("arcsen(sen(\\theta))","=","arcsen({y \\over r})")
         despeje_4 = TexMobject("\\theta")
-        despeje_4.set_color(BLUE)
-        igualar_1.set_color(BLUE)
+        despeje_4.set_color(BLUE2)
+        igualar_1.set_color(BLUE2)
         despeje_4.shift(np.array([3.5,1,0]))
         igualar_1.shift(np.array([3.5,1,0]))
 
@@ -414,12 +414,12 @@ class AnimationTwo(ThreeDScene):
 
         
         coseno = TexMobject("cos(\\theta)","=","{x","\\over"," r}")
-        coseno.set_color(BLUE)
+        coseno.set_color(BLUE2)
         coseno.move_to(np.array([3.5, 1,0]))
         igualar_2 = TexMobject("arcos(cos(\\theta))","=","arcos({x \\over r})")
         despeje_5 = TexMobject("\\theta")
-        despeje_5.set_color(BLUE)
-        igualar_2.set_color(BLUE)
+        despeje_5.set_color(BLUE2)
+        igualar_2.set_color(BLUE2)
         despeje_5.shift(np.array([3.5,1,0]))
         igualar_2.shift(np.array([3.5,1,0]))
 
@@ -431,12 +431,12 @@ class AnimationTwo(ThreeDScene):
         self.play(FadeOut(despeje_5))
 
         tan = TexMobject("tan(\\theta)","=","{y","\\over"," x}")
-        tan.set_color(BLUE)
+        tan.set_color(BLUE2)
         tan.move_to(np.array([3.5, 1,0]))
         igualar_3 = TexMobject("arctan(tan(\\theta))","=","arctan({y \\over x})")
         despeje_6 = TexMobject("\\theta")
-        despeje_6.set_color(BLUE)
-        igualar_3.set_color(BLUE)
+        despeje_6.set_color(BLUE2)
+        igualar_3.set_color(BLUE2)
         despeje_6.shift(np.array([3.5,1,0]))
         igualar_3.shift(np.array([3.5,1,0]))
 
@@ -448,6 +448,7 @@ class AnimationTwo(ThreeDScene):
         ####################################################################################3
         # Para que al final x, y se iguale a  r, θ y así explicar las coordenadas polares del punto en cuestión.
         # Listo! :D
+
         Teorem = TextMobject("Por el Teorema de Pitágoras")
         R = TexMobject("r^{2} = x^{2} + y^{2}")
         R2 = TexMobject("r = \\sqrt{x^{2} + y^{2}}")   
@@ -455,9 +456,9 @@ class AnimationTwo(ThreeDScene):
         Teorem.move_to(np.array([3.5, -1, 0]))
         R.shift(np.array([5,-1,0]))
         R2.shift(np.array([5,-1,0]))
-        R.set_color(BLUE)
-        R2.set_color(BLUE)
-        Teorem.set_color(BLUE)
+        R.set_color(BLUE2)
+        R2.set_color(BLUE2)
+        Teorem.set_color(BLUE2)
         
         self.play(Write(Teorem))
         self.play(ReplacementTransform(Teorem, R), run_time=2)

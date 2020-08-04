@@ -88,17 +88,21 @@ class AnimationThree(ThreeDScene):
     #Objetivo: Mostrar en una sola animación, la igualdad,
     # suma, resta y multiplicación de vectores.
 
-    CONFIG={
-        "camera_config":{"background_color" : Vanilla}
-    }
+#    CONFIG={
+ #       "camera_config":{"background_color" : Vanilla}
+  #  }
 
     def construct(self):
         # Comenzando con la igualdad de vectores.
         # Muestra de inicio 4 vectores donde 2 de ellos son iguales. 
         # Éstos con su debida etiqueta. 
-        
+
+        image = ImageMobject("/home/codexreckoner/manim/media/designs/raster_images/FONDOCOLOR.jpg")
+        image.scale(6)
+        self.play(FadeIn(image))
+
         Prop = TextMobject("Propiedades de los vectores")
-        Achul = "#0836A9"
+        Achul = "#FFFFFF"
         Prop.set_color(Achul)
         self.play(Write(Prop, run_time=2))
         self.play(FadeOut(Prop))
@@ -130,7 +134,7 @@ class AnimationThree(ThreeDScene):
         w.set_color(Achul)
         w.shift(v_1)
 
-        title_1 = TextMobject("Igualdad Vectorial")
+        title_1 = TextMobject("Igualdad vectorial")
         title_1.move_to(mover[-1])
         title_1.set_color(Achul)
         self.play(Write(title_1, run_time = 2))
@@ -216,7 +220,7 @@ class AnimationThree(ThreeDScene):
 
         # SUMA
 
-        title_2 = TextMobject("Suma Vectorial")
+        title_2 = TextMobject("Suma vectorial")
         title_2.move_to(mover[-1])
         title_2.set_color(Achul)
         self.play(Write(title_2, run_time = 2))
@@ -261,10 +265,10 @@ class AnimationThree(ThreeDScene):
         self.wait()
 
         suma = Vector(np.array([0.7, 5, 0])).move_to(np.array([0.9, -0.5, 0]))
-        suma.set_color("#572364")
+        suma.set_color("#FFFFFF")
         self.play(GrowArrow(suma))
         sumt = TexMobject("\\overrightarrow{u}+\\overrightarrow{v}")
-        sumt.set_color("#572364")
+        sumt.set_color("#FFFFFF")
         sumt.move_to(np.array([1.65, -0.8, 0]))
         self.play(Write(sumt))
         self.play(FadeOut(VSu))
@@ -283,7 +287,7 @@ class AnimationThree(ThreeDScene):
         # En la resta, aparecer primero un vector V.
         # Luego el vector U y a continuación el vector negativo de V.
 
-        title_3 = TextMobject("Resta Vectorial")
+        title_3 = TextMobject("Resta vectorial")
         title_3.set_color(Achul)
         title_3.move_to(mover[-1])
         self.play(Write(title_3))
@@ -309,12 +313,74 @@ class AnimationThree(ThreeDScene):
         
         self.play(ReplacementTransform(U_2, U_22))
         self.play(ReplacementTransform(mu2.copy(), mu2.move_to(np.array([-2, -1, 0]))))
-        self.wait(2)
+        menu2 = TexMobject("-\\overrightarrow{u}").set_color("#FFFFFF")
+        menu2.move_to(np.array([2, -1, 0]))
+        self.play(Write(menu2))
+        
+        _U_2 = Vector(np.array([3, 0, 0])).set_color("#FFFFFF")
+        _U_2.move_to(np.array([1.5, -1.5, 0]))
+        self.play(GrowArrow(_U_2))
+       
+        VSu2 = Vector(np.array([2, 3, 0])).move_to(np.array([4, 0, 0]))
+        VSu2.set_color(Achul)
 
+        USu2 = Vector(np.array([3, 0, 0])).set_color("#FFFFFF")
+        USu2.move_to(np.array([3.5, 1.5, 0]))
 
+        self.play(ReplacementTransform(V_2.copy(), VSu2))
+        self.play(ReplacementTransform(_U_2.copy(), USu2))
+        
+        rest = Vector(np.array([5, 3, 0])).move_to(np.array([2.5, 0, 0]))
+        rest.set_color("#FFFFFF")
+        self.play(GrowArrow(rest))
+
+        self.play(FadeOut(VSu2))
+        self.play(FadeOut(USu2))
+        self.play(FadeOut(menu2))
+        self.play(FadeOut(_U_2))
+        
+        restt = TexMobject("\\overrightarrow{v}-\\overrightarrow{u}").set_color("#FFFFFF")
+        restt.move_to(np.array([3, -1, 0]))
+        self.play(Write(restt))
+        self.wait(3)
+
+        self.play(FadeOut(U_2))
+        self.play(FadeOut(mu2))
+        self.play(FadeOut(U_22))
+        self.play(FadeOut(V_2))
+        self.play(FadeOut(mv2))
+        self.play(FadeOut(rest))
+        self.play(FadeOut(restt))
+        self.play(FadeOut(title_3))
+        self.wait(3)
 
         # En la multiplicación mostrar primero un vector A. 
         # luego hacer una copia de si mismo que se expanda en longitud 
         # hasta obtener el vector 2A
 
+        title_4 = TextMobject("Multiplicación vectorial por escalar ") 
+        title_4.set_color(Achul)
+        title_4.move_to(mover[-1] + np.array([1, 0, 0]))
+        self.play(Write(title_4))
+        self.wait(2)
+
+        A = Vector(np.array([3, 2, 0])).move_to(np.array([-1, -1, 0]))
+        A.set_color(Achul)
+        self.play(GrowArrow(A))
+        self.wait(1)
+
+        Ate = TexMobject("\\overrightarrow{A}").set_color(Achul)
+        Ate2 = TexMobject("2\\overrightarrow{A}").set_color(Achul)
+        Ate.move_to(np.array([1.5, 0, 0]))
+        Ate2.move_to(np.array([4, 2.5, 0]))
+        self.play(Write(Ate))
+
+        A2 = Vector(np.array([6, 4, 0])).move_to(np.array([0.5, 0, 0]))
+        A2.set_color(Achul)
+        self.play(GrowArrow(A2))
+        self.play(Write(Ate2))
+        self.play(FadeOut(A))
+        self.play(FadeOut(Ate))
+
+        self.wait(3)
 
