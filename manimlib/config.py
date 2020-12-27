@@ -1,5 +1,5 @@
 import argparse
-import colour
+from colour import Color
 import importlib.util
 import os
 import sys

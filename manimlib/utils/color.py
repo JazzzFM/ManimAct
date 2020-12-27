@@ -1,5 +1,4 @@
 import random
-
 from colour import Color
 import numpy as np
 

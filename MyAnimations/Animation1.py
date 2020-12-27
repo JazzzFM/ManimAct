@@ -270,9 +270,9 @@ class AnimationOne(ThreeDScene):
 #        "camera_config":{"background_color" : Vanilla}
 #    }
     def construct(self):
-        image = ImageMobject("/home/codexreckoner/manim/media/designs/raster_images/FONDOCOLOR.jpg")
-        image.scale(6)
-        self.play(FadeIn(image))
+        #image = ImageMobject("/home/codexreckoner/manim/media/designs/raster_images/FONDOCOLOR.jpg")
+        #image.scale(6)
+        #self.play(FadeIn(image))
         axes = ThreeDAxes()
         axes.set_color("#FFFFFF")
         self.add(axes)
